@@ -29,6 +29,9 @@ target_link_libraries(NotepadQTCLion
         Qt::Widgets
         Qt::PrintSupport # à rajouter si on utilise des composants supplémentaires (dans ce cas là c'est pour Imprimer)
 )
+# On rajoute le dossier des ressources (images, etc.), sinon il ne les trouve pas
+qt_add_resources(RESOURCES resources/resources.qrc) # Fichier .qrc qui contient les ressources
+target_sources(NotepadQTCLion PRIVATE ${RESOURCES}) # On ajoute les ressources au projet
 
 # ça on y fait pas gaffe, c'est pour le débug
 if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
