@@ -13,7 +13,6 @@ Notepad::Notepad(QWidget *parent)
 {
     ui->setupUi(this);
 
-
     // Connecter le bouton "ui->BOUTON" quand il est trigerred à la classe "this", et ensuite à la méthode (qui est définie dans les slots du .h)
     connect(ui->actionNouveau, &QAction::triggered, this, &Notepad::newDocument);
     connect(ui->actionOuvrir, &QAction::triggered, this, &Notepad::open);

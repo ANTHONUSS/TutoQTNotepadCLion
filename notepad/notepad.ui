@@ -65,31 +65,55 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionNouveau">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/Images/images/new.png</normaloff>:/Images/images/new.png</iconset>
+   </property>
    <property name="text">
     <string>Nouveau</string>
    </property>
   </action>
   <action name="actionOuvrir">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/Images/images/open.png</normaloff>:/Images/images/open.png</iconset>
+   </property>
    <property name="text">
     <string>Ouvrir...</string>
    </property>
   </action>
   <action name="actionEnregistrer">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/Images/images/save.png</normaloff>:/Images/images/save.png</iconset>
+   </property>
    <property name="text">
     <string>Enregistrer...</string>
    </property>
   </action>
   <action name="actionEnregistrer_sous">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/Images/images/save_as.png</normaloff>:/Images/images/save_as.png</iconset>
+   </property>
    <property name="text">
     <string>Enregistrer sous...</string>
    </property>
   </action>
   <action name="actionQuitter">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/Images/images/exit.png</normaloff>:/Images/images/exit.png</iconset>
+   </property>
    <property name="text">
     <string>Quitter</string>
    </property>
   </action>
   <action name="actionPolice">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/Images/images/font.png</normaloff>:/Images/images/font.png</iconset>
+   </property>
    <property name="text">
     <string>Police</string>
    </property>
@@ -97,6 +121,10 @@
   <action name="actionItalique">
    <property name="checkable">
     <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/Images/images/italic.png</normaloff>:/Images/images/italic.png</iconset>
    </property>
    <property name="text">
     <string>Italique</string>
@@ -106,6 +134,10 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/Images/images/bold.png</normaloff>:/Images/images/bold.png</iconset>
+   </property>
    <property name="text">
     <string>Gras</string>
    </property>
@@ -114,16 +146,26 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/Images/images/underline.png</normaloff>:/Images/images/underline.png</iconset>
+   </property>
    <property name="text">
     <string>Souligner</string>
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/Images/images/info.png</normaloff>:/Images/images/info.png</iconset>
+   </property>
    <property name="text">
     <string>About</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
