@@ -18,8 +18,15 @@ Notepad::Notepad(QWidget *parent)
     connect(ui->actionOuvrir, &QAction::triggered, this, &Notepad::open);
     connect(ui->actionEnregistrer, &QAction::triggered, this, &Notepad::save);
     connect(ui->actionEnregistrer_sous, &QAction::triggered, this, &Notepad::saveAs);
-    connect(ui->actionPolice, &QAction::triggered, this, &Notepad::selectFont);
 
+    connect(ui->actionQuitter, &QAction::triggered, this, &QWidget::close);
+
+    connect(ui->actionPolice, &QAction::triggered, this, &Notepad::selectFont);
+    connect(ui->actionItalique, &QAction::triggered, this, &Notepad::setItalic);
+    connect(ui->actionGras, &QAction::triggered, this, &Notepad::setBold);
+    connect(ui->actionSouligner, &QAction::triggered, this, &Notepad::setUnderline);
+
+    connect(ui->actionAbout, &QAction::triggered, this, &Notepad::showAbout);
 }
 
 Notepad::~Notepad() {
@@ -27,20 +34,20 @@ Notepad::~Notepad() {
 }
 
 void Notepad::newDocument() {
-    currentFile.clear();
+    currentFilePath.clear();
     ui->textArea->setText(QString());
-    setWindowTitle("Nouveau Document");
+    setWindowTitle("Notepad : Nouveau Document");
 }
 
 void Notepad::open() {
     QString fileName = QFileDialog::getOpenFileName(this, "Ouvrir un fichier");
     QFile file(fileName);
-    currentFile = fileName;
+    currentFilePath = fileName;
     if (!file.open(QIODevice::ReadOnly | QFile::Text)) {
         QMessageBox::warning(this, "Warning", "Impossible d'ouvrir le fichier : " + file.errorString());
         return;
     }
-    setWindowTitle(fileName);
+    setWindowTitle("Notepad : " + fileName);
     QTextStream in(&file);
     QString text = in.readAll();
     ui->textArea->setText(text);
@@ -48,34 +55,34 @@ void Notepad::open() {
 }
 
 void Notepad::save() {
-    QString fileName;
-    if (currentFile.isEmpty()) {
-        fileName = QFileDialog::getSaveFileName(this, "Sauvegarder le fichier");
-        currentFile = fileName;
+    QString filePath;
+    if (currentFilePath.isEmpty()) {
+        filePath = QFileDialog::getSaveFileName(this, "Sauvegarder le fichier");
+        currentFilePath = filePath;
     } else {
-        fileName = currentFile;
+        filePath = currentFilePath;
     }
-    QFile file(fileName);
+    QFile file(filePath);
     if (!file.open(QIODevice::WriteOnly | QFile::Text)) {
         QMessageBox::warning(this, "Warning", "Impossible d'enregistrer le fichier : " + file.errorString());
         return;
     }
-    setWindowTitle(fileName);
+    setWindowTitle("Notepad : " + filePath);
     QTextStream out(&file);
     out << ui->textArea->toPlainText();
     file.close();
 }
 
 void Notepad::saveAs() {
-    QString fileName = QFileDialog::getSaveFileName(this, "Sauvegarder sous");
-    QFile file(fileName);
+    QString filePath = QFileDialog::getSaveFileName(this, "Sauvegarder sous");
+    QFile file(filePath);
 
     if (!file.open(QIODevice::WriteOnly | QFile::Text)) {
         QMessageBox::warning(this, "Warning", "Impossible d'enregistrer le fichier : " + file.errorString());
         return;
     }
-    currentFile = fileName;
-    setWindowTitle(fileName);
+    currentFilePath = filePath;
+    setWindowTitle("Notepad : " + filePath);
     QTextStream out(&file);
     out << ui->textArea->toPlainText();
     file.close();
@@ -87,4 +94,21 @@ void Notepad::selectFont() {
     if (fontSelected) {
         ui->textArea->setFont(font);
     }
+}
+
+void Notepad::setItalic(bool italic) {
+    ui->textArea->setFontItalic(italic);
+}
+
+void Notepad::setBold(bool bold) {
+    ui->textArea->setFontWeight(bold ? QFont::Bold : QFont::Normal);
+}
+
+void Notepad::setUnderline(bool underline) {
+    ui->textArea->setFontUnderline(underline);
+}
+
+void Notepad::showAbout() {
+    QMessageBox::about(this, "À propos", "Notepad - Application de traitement de texte simple\n"
+                                         "Créé par ANTHONUS avec l'aide du tuto QT");
 }

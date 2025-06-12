@@ -1,31 +1,36 @@
 cmake_minimum_required(VERSION 3.31)
-project(TestQTClion)
+project(NotepadQTCLion)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+# On rajoute le chemin de Qt, sinon il ne trouve pas les fichiers de configuration
 set(CMAKE_PREFIX_PATH "C:/Qt/6.9.1/mingw_64/lib/cmake")
 
 find_package(Qt6 COMPONENTS
         Core
         Gui
         Widgets
-        PrintSupport
+        PrintSupport # à rajouter si on utilise des composants supplémentaires (dans ce cas là c'est pour Imprimer)
         REQUIRED)
 
-add_executable(TestQTClion main.cpp
-        notepad.cpp
-        notepad.h
-        notepad.ui)
-target_link_libraries(TestQTClion
+# Rajouter les chemins des dossiers qui contiennent un .ui (pour le compilo, sinon il est po content)
+set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_SOURCE_DIR}/notepad")
+
+add_executable(NotepadQTCLion main.cpp
+        notepad/notepad.cpp
+        notepad/notepad.h
+        notepad/notepad.ui)
+target_link_libraries(NotepadQTCLion
         Qt::Core
         Qt::Gui
         Qt::Widgets
-        Qt::PrintSupport
+        Qt::PrintSupport # à rajouter si on utilise des composants supplémentaires (dans ce cas là c'est pour Imprimer)
 )
 
+# ça on y fait pas gaffe, c'est pour le débug
 if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     set(DEBUG_SUFFIX)
     if (MSVC AND CMAKE_BUILD_TYPE MATCHES "Debug")

@@ -29,10 +29,14 @@ private slots:
     void save();
     void saveAs();
     void selectFont();
+    void setItalic(bool italic);
+    void setBold(bool bold);
+    void setUnderline(bool underline);
+    void showAbout();
 
 private:
     Ui::Notepad *ui;
-    QString currentFile;
+    QString currentFilePath;
 };
 
 

@@ -14,19 +14,15 @@
    <string>Notepad</string>
   </property>
   <widget class="QWidget" name="Widgetcentral">
-   <widget class="QTextEdit" name="textArea">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>891</width>
-      <height>551</height>
-     </rect>
-    </property>
-    <property name="autoFormatting">
-     <set>QTextEdit::AutoFormattingFlag::AutoNone</set>
-    </property>
-   </widget>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTextEdit" name="textArea">
+      <property name="autoFormatting">
+       <set>QTextEdit::AutoFormattingFlag::AutoNone</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -46,16 +42,26 @@
     <addaction name="actionEnregistrer"/>
     <addaction name="actionEnregistrer_sous"/>
     <addaction name="separator"/>
-    <addaction name="actionImprimer_et_quitter"/>
+    <addaction name="actionQuitter"/>
    </widget>
    <widget class="QMenu" name="menu_diter">
     <property name="title">
      <string>Éditer</string>
     </property>
     <addaction name="actionPolice"/>
+    <addaction name="actionItalique"/>
+    <addaction name="actionGras"/>
+    <addaction name="actionSouligner"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuNew"/>
    <addaction name="menu_diter"/>
+   <addaction name="menuAbout"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionNouveau">
@@ -78,14 +84,43 @@
     <string>Enregistrer sous...</string>
    </property>
   </action>
-  <action name="actionImprimer_et_quitter">
+  <action name="actionQuitter">
    <property name="text">
-    <string>Imprimer et quitter</string>
+    <string>Quitter</string>
    </property>
   </action>
   <action name="actionPolice">
    <property name="text">
     <string>Police</string>
+   </property>
+  </action>
+  <action name="actionItalique">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Italique</string>
+   </property>
+  </action>
+  <action name="actionGras">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Gras</string>
+   </property>
+  </action>
+  <action name="actionSouligner">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Souligner</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>

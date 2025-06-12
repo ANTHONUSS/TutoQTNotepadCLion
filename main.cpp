@@ -1,4 +1,4 @@
-#include "notepad.h"
+#include "notepad/notepad.h"
 #include <ui_Notepad.h>
 
 int main(int argc, char* argv[]) {
