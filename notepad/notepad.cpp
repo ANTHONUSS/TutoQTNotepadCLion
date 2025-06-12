@@ -13,7 +13,8 @@ Notepad::Notepad(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Connecter le bouton "Nouveau" à la méthode "newDocument" quand il est trigerred
+
+    // Connecter le bouton "ui->BOUTON" quand il est trigerred à la classe "this", et ensuite à la méthode (qui est définie dans les slots du .h)
     connect(ui->actionNouveau, &QAction::triggered, this, &Notepad::newDocument);
     connect(ui->actionOuvrir, &QAction::triggered, this, &Notepad::open);
     connect(ui->actionEnregistrer, &QAction::triggered, this, &Notepad::save);
@@ -33,12 +34,14 @@ Notepad::~Notepad() {
     delete ui;
 }
 
+// On créé un nouveau document
 void Notepad::newDocument() {
     currentFilePath.clear();
     ui->textArea->setText(QString());
     setWindowTitle("Notepad : Nouveau Document");
 }
 
+// On ouvre un document
 void Notepad::open() {
     QString fileName = QFileDialog::getOpenFileName(this, "Ouvrir un fichier");
     QFile file(fileName);
@@ -54,6 +57,7 @@ void Notepad::open() {
     file.close();
 }
 
+// On sauvegarde un document
 void Notepad::save() {
     QString filePath;
     if (currentFilePath.isEmpty()) {
@@ -73,6 +77,7 @@ void Notepad::save() {
     file.close();
 }
 
+// On enregistre-sous un document
 void Notepad::saveAs() {
     QString filePath = QFileDialog::getSaveFileName(this, "Sauvegarder sous");
     QFile file(filePath);
@@ -88,6 +93,7 @@ void Notepad::saveAs() {
     file.close();
 }
 
+// On selectionne la fond du Notepad (pas gardée dans le fichier quand on enregistre)
 void Notepad::selectFont() {
     bool fontSelected;
     QFont font = QFontDialog::getFont(&fontSelected, this);
@@ -96,18 +102,22 @@ void Notepad::selectFont() {
     }
 }
 
+// On met le texte en italique (pas gardée dans le fichier quand on enregistre)
 void Notepad::setItalic(bool italic) {
     ui->textArea->setFontItalic(italic);
 }
 
+// On met le texte en gras (pas gardée dans le fichier quand on enregistre)
 void Notepad::setBold(bool bold) {
     ui->textArea->setFontWeight(bold ? QFont::Bold : QFont::Normal);
 }
 
+// On met le texte en souligné (pas gardée dans le fichier quand on enregistre)
 void Notepad::setUnderline(bool underline) {
     ui->textArea->setFontUnderline(underline);
 }
 
+// On affiche une pop-up d'information
 void Notepad::showAbout() {
     QMessageBox::about(this, "À propos", "Notepad - Application de traitement de texte simple\n"
                                          "Créé par ANTHONUS avec l'aide du tuto QT");
